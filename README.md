@@ -25,6 +25,9 @@ Residents_On_Shelters = [User Id, Shelter Id, Evacuation date, leaving date]<br>
 Weather Types = [Weather type]<br>
 Weather Report = [report date, weather condition, humidity, wind direction, chance of raining, temperature, rain millimeter, flood_level, wind_speed]<br>
 
+##ERD Table 
+
+
 ## Defining Relationships
 1.) A user can have multiple sos_alerts and incident_reports <br>
 2.) An sos_alerts and incident_reports can only belong to one person<br>
