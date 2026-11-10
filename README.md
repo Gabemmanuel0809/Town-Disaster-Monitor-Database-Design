@@ -43,5 +43,5 @@ Weather Report = [report date, weather condition, humidity, wind direction, chan
 
 ## How to run 
 1.) Import either implementation.sql or schema.dbml in your corresponding database application program<br>
-2.) Import the seeding.sql to populate the Database
-3.) Try the sample queries provided
+2.) Import the seeding.sql to populate the Database<br>
+3.) Try the sample queries provided<br>
