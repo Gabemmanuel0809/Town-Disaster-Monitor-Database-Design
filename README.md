@@ -26,7 +26,7 @@ Weather Types = [Weather type]<br>
 Weather Report = [report date, weather condition, humidity, wind direction, chance of raining, temperature, rain millimeter, flood_level, wind_speed]<br>
 
 ##ERD Table 
-
+![ERD Diagram](LOGICAL/ERD.png)
 
 ## Defining Relationships
 1.) A user can have multiple sos_alerts and incident_reports <br>
