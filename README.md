@@ -25,7 +25,7 @@ Residents_On_Shelters = [User Id, Shelter Id, Evacuation date, leaving date]<br>
 Weather Types = [Weather type]<br>
 Weather Report = [report date, weather condition, humidity, wind direction, chance of raining, temperature, rain millimeter, flood_level, wind_speed]<br>
 
-##ERD Table 
+## ERD Table 
 ![ERD Diagram](LOGICAL/ERD.png)
 
 ## Defining Relationships
