@@ -1,0 +1,116 @@
+Table users {
+    id INT [pk, increment]
+    fname VARCHAR(50) [not null] 
+    mname VARCHAR(50) [null]
+    lname VARCHAR(50) [not null]
+    suffix VARCHAR(50) [null]
+    role ENUM('Resident', 'Officials') [DEFAULT: 'Resident']
+    phone_number VARCHAR(15) [not null]
+    email VARCHAR(100) [unique, not null]
+    hashed_passwpord VARCHAR(255) [not null]
+}
+
+Table disasters {
+  id INT [pk, increment]
+  disaster_type VARCHAR(100) [not null]
+}
+
+Table extra_needs {
+   id INT [pk, increment]
+   name VARCHAR(100) [unique, not null]
+}
+
+Table sos_alerts {
+   id INT [pk, increment]
+   user_id INT [ref: > users.id]
+   disaster_id INT [ref: > disasters.id]
+   risk_level ENUM('Low', 'Moderate', 'High', 'Critical') [not null]
+   descript TEXT [null]
+   location_name VARCHAR(150) [not null]
+   latitude DECIMAL(10, 8) [not null]
+   longitude DECIMAL(11, 8) [not null]
+   sos_date TIMESTAMP [default: 'now()']
+   sos_status ENUM('Pending', 'Declined', 'Approved','Completed') [default:'Pending']
+}
+
+Table incidents {
+  id INT [pk, increment]
+  incident_type VARCHAR(80) [not null]
+}
+
+Table incident_reports {
+   id INT [pk, increment]
+   user_id INT [ref: > users.id]
+   incident_id INT [ref: > incidents.id]
+   descript TEXT [null]
+   reported_at TIMESTAMP [default: 'now()']
+   priority_level ENUM('Low', 'Moderate', 'High') [null]
+   location VARCHAR(150) [not null]
+   report_status ENUM('Pending', 'Declined', 'Approved', 'Completed') [default: 'Pending']
+}
+
+Table alert_needs {
+  id INT [pk, increment]
+  alert_id INT [unique, ref: > sos_alerts.id]
+  needs_id INT [unique, ref: > extra_needs.id]
+}
+
+Table town_hotlines {
+  id INT [pk, increment]
+  hotline_owner VARCHAR(50) [not null]
+  hotline_number VARCHAR(15) [not null]
+  number_status ENUM('Active', 'Inactive') [default: 'Active']
+}
+
+Table events {
+   id INT [pk, increment]
+   event_type VARCHAR(100) [not null]
+   organizer VARCHAR(100) [not null]
+}
+
+Table anouncements {
+  id INT [pk, increment]
+  event_id INT [ref: > events.id]
+  descript TEXT [not null]
+  event_date DATE [default: 'now()']
+  location VARCHAR(120) [not null]
+}
+
+TABLE shelters {
+    id INT [pk, increment] 
+    shelter_name VARCHAR(70) [not null]
+    location_name VARCHAR(120) [not null]
+    latitude DECIMAL(10, 8) [not null]
+    longitude DECIMAL(11, 8) [not null]
+    max_capacity INT [not null]
+    current_capacity INT [not null]
+
+	  //NOTE: CONSTRAINT cap_check CHECK(current_capacity <= max_capacity),
+    //NOTE: (this is a virtual column): shelter_status VARCHAR(20) 
+}
+
+Table residents_on_shelter {
+  id INT [pk, increment]
+  resident_id INT [ref: > users.id]
+  shelter_id INT [ref: > shelters.id]
+  evacuation_time TIMESTAMP [default: 'now()']
+  leaving_date TIMESTAMP [null]
+}
+
+Table weather_types {
+   id INT [pk, increment]
+   wearther_type VARCHAR(120) [not null]
+}
+
+Table weather_reports {
+  id INT [pk, increment]
+  report_date DATE [default: 'now()']
+  weather_condition INT [ref: > weather_types.id]
+  humidity DECIMAL(5, 2) [not null]
+  wind_direction DECIMAL(5, 2) [not null] 
+  chance_of_raining DECIMAL(5, 2) [not null] 
+	temperature DECIMAL(5, 2) [not null]
+	rain_millimeter DECIMAL(5, 2) [null]
+  flood_level ENUM('None', 'Low', 'Moderate', 'High') [default: 'None']
+	wind_speed SMALLINT [not null]
+}
