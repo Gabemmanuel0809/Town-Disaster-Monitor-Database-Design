@@ -1,4 +1,4 @@
-# Town Disaster Response and Monitoring Database Design 
+# Town Disaster Monitoring Database Design 
 
 ## Requirements
 A town wants to organize sos_alerts, incident_reports, and weather 
